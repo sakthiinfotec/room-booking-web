@@ -1,4 +1,20 @@
-.row {
+.contentWrapper {
+  margin: 30px 15% auto;
+}
+
+.headerWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  color: rgb(112, 76, 182);
+  margin: 16px;
+}
+
+/* .row {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +40,7 @@
 .button {
   appearance: none;
   background: none;
-  font-size: 32px;
+  font-size: 16px;
   padding-left: 12px;
   padding-right: 12px;
   outline: none;
@@ -76,4 +92,4 @@
   width: 0%;
   opacity: 1;
   transition: 0s;
-}
+} */
