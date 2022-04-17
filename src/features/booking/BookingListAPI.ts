@@ -1,9 +1,5 @@
+import { LIST_BOOKINGS, LIST_ROOMS, LIST_SLOTS } from '../../app/config';
 import { Booking } from './../../app/types/index';
-const API_BASE_URL = 'http://127.0.0.1:3000';
-// const LIST_USERS = `${API_BASE_URL}/users`;
-const LIST_ROOMS = `${API_BASE_URL}/rooms`;
-const LIST_SLOTS = `${API_BASE_URL}/slots`;
-const LIST_BOOKINGS = `${API_BASE_URL}/bookings`;
 
 export async function fetchInitData(): Promise<any> {
   return Promise.all([
