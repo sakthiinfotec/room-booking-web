@@ -29,6 +29,11 @@ export interface BookingState {
   initDataStatus: AsyncRequestState;
 }
 
+export interface BookingListProps {
+  rooms: Room[],
+  slots: Slot[],
+}
+
 export interface BookingRow {
   key: string;
   bookingId: number;
@@ -36,3 +41,4 @@ export interface BookingRow {
   room: string;
   time: string[];
 }
+

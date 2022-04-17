@@ -13,13 +13,13 @@ import {
   selectRooms,
   selectSlots,
 } from "./bookingSlice";
-import { Booking, BookingRow, Room, Slot } from "../../app/types";
+import { Booking, BookingListProps, BookingRow, Room, Slot } from "../../app/types";
 import { columns } from "./TableHelper";
 
-export function BookingList() {
-  const initDataLoading = useAppSelector(selectInitDataLoading);
-  const rooms = useAppSelector<Room[]>(selectRooms);
-  const slots = useAppSelector<Slot[]>(selectSlots);
+export function BookingList({ rooms = [], slots = [] }: BookingListProps) {
+  // const initDataLoading = useAppSelector(selectInitDataLoading);
+  // const rooms = useAppSelector<Room[]>(selectRooms);
+  // const slots = useAppSelector<Slot[]>(selectSlots);
   const bookings = useAppSelector<Booking[]>(selectBookings);
   const bookingsLoading = useAppSelector(selectBookingsLoading);
   const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export function BookingList() {
   };
 
   let data: BookingRow[] = [];
-  if (!initDataLoading && !bookingsLoading && bookings.length && rooms.length && slots.length) {
+  if (!bookingsLoading && bookings.length && rooms.length && slots.length) {
     // console.log(`[BookingList] rooms:${JSON.stringify(rooms, null, 2)}`);
     // console.log(`[BookingList] slots:${JSON.stringify(slots, null, 2)}`);
     data = bookings.map((booking) => {
@@ -46,9 +46,9 @@ export function BookingList() {
     });
   }
 
-  useEffect(() => {
-    dispatch(fetchInitDataAsync());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchInitDataAsync());
+  // }, [dispatch]);
 
   const fetchBookings = useCallback(() => {
     dispatch(fetchBookingsAsync());

@@ -1,24 +1,16 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import styles from "./Home.module.css";
-import {
-  fetchInitDataAsync,
-  selectBookings,
-  selectBookingsLoading,
-  selectInitDataLoading,
-  selectRooms,
-  selectSlots,
-} from "../booking/bookingSlice";
-import { Booking, BookingRow, Room, Slot } from "../../app/types";
+import { fetchInitDataAsync, selectInitDataLoading, selectRooms, selectSlots } from "../booking/bookingSlice";
+import { Room, Slot } from "../../app/types";
 import { BookingList } from "../booking/BookingList";
+import { Spin } from "antd";
 
 export function Home() {
+  const dispatch = useAppDispatch();
   const initDataLoading = useAppSelector(selectInitDataLoading);
   const rooms = useAppSelector<Room[]>(selectRooms);
   const slots = useAppSelector<Slot[]>(selectSlots);
-  const bookings = useAppSelector<Booking[]>(selectBookings);
-  const bookingsLoading = useAppSelector(selectBookingsLoading);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchInitDataAsync());
@@ -31,9 +23,13 @@ export function Home() {
   //   };
   // }, []);
 
-  return (
-    // <div className={styles.contentWrapper}>
-    <BookingList />
-    // </div>
-  );
+  if (initDataLoading) {
+    return (
+      <div className={styles.loading}>
+        <Spin />
+      </div>
+    );
+  }
+
+  return <BookingList rooms={rooms} slots={slots} />;
 }

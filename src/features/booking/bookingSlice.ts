@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../../app/store';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 import { fetchInitData, fetchBookings } from './BookingListAPI';
 import { BookingState } from '../../app/types';
 
@@ -44,8 +44,8 @@ export const bookingSlice = createSlice({
 export const selectInitDataLoading = (state: RootState) => state.booking.initDataStatus === 'loading';
 export const selectRooms = (state: RootState) => state.booking.rooms;
 export const selectSlots = (state: RootState) => state.booking.slots;
-export const selectBookings = (state: RootState) => state.booking.bookings;
 export const selectBookingsLoading = (state: RootState) => state.booking.bookingStatus === 'loading';
+export const selectBookings = (state: RootState) => state.booking.bookings;
 
 
 export default bookingSlice.reducer;
