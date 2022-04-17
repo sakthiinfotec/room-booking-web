@@ -1,38 +1,31 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Button, Table, Tag, Space } from "antd";
+import { useCallback, useEffect, useState } from "react";
+import { Button, Table } from "antd";
 import moment from "moment";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import styles from "./BookingList.module.css";
-import {
-  fetchBookingsAsync,
-  fetchInitDataAsync,
-  selectBookings,
-  selectBookingsLoading,
-  selectInitDataLoading,
-  selectRooms,
-  selectSlots,
-} from "./bookingSlice";
-import { Booking, BookingListProps, BookingRow, Room, Slot } from "../../app/types";
+import { fetchBookingsAsync, selectBookings, selectBookingsLoading } from "./bookingSlice";
+import { Booking, BookingListProps, BookingRow, ActionLoding } from "../../app/types";
 import { columns } from "./TableHelper";
 
+const TitleSection = ({ loading, onClick }: ActionLoding) => (
+  <div className={styles.headerWrapper}>
+    <h2 className={styles.header}>My Bookings</h2>
+    <div>
+      <Button type="primary" loading={loading} onClick={onClick}>
+        Refresh
+      </Button>
+    </div>
+  </div>
+);
+
 export function BookingList({ rooms = [], slots = [] }: BookingListProps) {
-  // const initDataLoading = useAppSelector(selectInitDataLoading);
-  // const rooms = useAppSelector<Room[]>(selectRooms);
-  // const slots = useAppSelector<Slot[]>(selectSlots);
   const bookings = useAppSelector<Booking[]>(selectBookings);
   const bookingsLoading = useAppSelector(selectBookingsLoading);
   const dispatch = useAppDispatch();
 
-  const pagination = {
-    pageSize: 10,
-  };
-
-  let data: BookingRow[] = [];
-  if (!bookingsLoading && bookings.length && rooms.length && slots.length) {
-    // console.log(`[BookingList] rooms:${JSON.stringify(rooms, null, 2)}`);
-    // console.log(`[BookingList] slots:${JSON.stringify(slots, null, 2)}`);
-    data = bookings.map((booking) => {
+  const transformBookingsToRowData = (bookings: Booking[]) => {
+    return bookings.map((booking) => {
       const { id, createdDate, roomId, slotId } = booking;
       const room = rooms.find((room) => room.id === roomId);
       const slot = slots.find((slot) => slot.id === slotId);
@@ -44,11 +37,12 @@ export function BookingList({ rooms = [], slots = [] }: BookingListProps) {
         time: [slot?.name || ""],
       };
     });
-  }
+  };
 
-  // useEffect(() => {
-  //   dispatch(fetchInitDataAsync());
-  // }, [dispatch]);
+  let data: BookingRow[] = [];
+  if (!bookingsLoading && bookings.length && rooms.length && slots.length) {
+    data = transformBookingsToRowData(bookings);
+  }
 
   const fetchBookings = useCallback(() => {
     dispatch(fetchBookingsAsync());
@@ -58,25 +52,16 @@ export function BookingList({ rooms = [], slots = [] }: BookingListProps) {
     fetchBookings();
   }, [fetchBookings]);
 
-  // useEffect(() => {
-  //   console.log(`[Bookings] bookings: ${JSON.stringify(bookings, null, 2)}`);
-  // }, [bookings]);
-
-  // useEffect(() => {
-  //   console.log(`[Bookings] status: ${bookingsLoading}`);
-  // }, [bookingsLoading]);
-
   return (
     <div className={styles.contentWrapper}>
-      <div className={styles.headerWrapper}>
-        <h2 className={styles.header}>My Bookings</h2>
-        <div>
-          <Button type="primary" loading={bookingsLoading} onClick={fetchBookings}>
-            Refresh
-          </Button>
-        </div>
-      </div>
-      <Table columns={columns} dataSource={data} pagination={pagination} />
+      <TitleSection loading={bookingsLoading} onClick={fetchBookings} />
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={{
+          pageSize: 10,
+        }}
+      />
     </div>
   );
 }

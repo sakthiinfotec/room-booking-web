@@ -34,6 +34,11 @@ export interface BookingListProps {
   slots: Slot[],
 }
 
+export interface ActionLoding {
+  onClick: () => void,
+  loading: boolean;
+}
+
 export interface BookingRow {
   key: string;
   bookingId: number;
