@@ -30,6 +30,7 @@ import {
   STEP1_TITLE,
   STEP2_TITLE,
   STEP3_TITLE,
+  TITLE_NEW_BOOKING,
 } from "../../app/config";
 
 const NewBooking = () => {
@@ -197,7 +198,7 @@ const NewBooking = () => {
 
   return (
     <div className={styles.contentWrapper}>
-      <TitleSection title="New Booking" />
+      <TitleSection title={TITLE_NEW_BOOKING} />
 
       {/* Steps components */}
       <Steps current={current}>

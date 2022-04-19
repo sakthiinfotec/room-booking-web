@@ -22,6 +22,7 @@ import {
   BTN_YES_CANCEL,
   CANCEL_CONFIRM_MESSAGE,
   CANCEL_CONFIRM_TITLE,
+  TITLE_MY_BOOKINGS,
 } from "../../app/config";
 
 export function BookingList() {
@@ -78,7 +79,7 @@ export function BookingList() {
 
   return (
     <div className={styles.contentWrapper}>
-      <TitleSection title="My Bookings">
+      <TitleSection title={TITLE_MY_BOOKINGS}>
         <div>
           <Button type="primary" loading={bookingsLoading} onClick={fetchBookings}>
             {BTN_REFRESH}

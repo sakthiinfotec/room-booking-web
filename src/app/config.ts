@@ -17,6 +17,9 @@ export const BTN_NEXT = "Next"
 export const BTN_BOOK_ROOM = "Book Room"
 export const BTN_DONE = "Done"
 
+export const TITLE_MY_BOOKINGS = "My Bookings"
+export const TITLE_NEW_BOOKING = "New Booking"
+
 export const STEP1_TITLE = "Choose a Room"
 export const STEP2_TITLE = "Choose Time Slots and Book"
 export const STEP3_TITLE = "Comfirmation"
