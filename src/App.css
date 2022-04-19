@@ -1,5 +1,14 @@
 @import "~antd/dist/antd.css";
 
+:root {
+  --theme-color: #5513c1;
+  --theme-color-success: #07cd07;
+  --theme-color-error: #f72a0a;
+  --theme-color-rgb: rgb(112, 76, 182);
+  --theme-color-dark: #2b0688;
+  --theme-color-dark-hover-rgba: rgba(43, 6, 136, 0.6);
+}
+
 .App {
   text-align: center;
 }

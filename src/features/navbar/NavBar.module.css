@@ -1,11 +1,18 @@
 .navbar {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  min-height: 12vh;
-  background: #5513c1;
+  flex-direction: column;
+  justify-content: center;
+  height: 100px;
+  background: var(--theme-color);
   color: #ffffff;
+}
+
+.navbarWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 15%;
 }
 
 .logo {
@@ -14,10 +21,6 @@
   pointer-events: none;
   font-size: 36px;
   font-weight: bold;
-}
-
-.navLinksWrapper {
-  width: 40%;
 }
 
 .navLinks {
@@ -29,7 +32,7 @@
 }
 
 .link {
-  margin: 0px 12px;
+  margin: 0px 0px 0px 60px;
   text-decoration: none;
   color: #ffffff;
 }
@@ -39,11 +42,11 @@
 }
 
 .linkButton {
-  background: #2b0688;
+  background: var(--theme-color-dark);
   padding: 12px 24px;
   border-radius: 8px;
 }
 
 .linkButton:hover {
-  background: rgba(43, 6, 136, 0.6);
+  background: var(--theme-color-dark-hover-rgba);
 }

@@ -22,16 +22,18 @@ export interface Slot {
 }
 
 export interface BookingState {
-  bookings: Booking[],
-  rooms: Room[],
-  slots: Slot[],
-  bookingStatus: AsyncRequestState;
   initDataStatus: AsyncRequestState;
-}
-
-export interface BookingListProps {
   rooms: Room[],
   slots: Slot[],
+  availableRooms: Room[],
+  availableSlots: Slot[],
+  getAvailableRoomsStatus: AsyncRequestState;
+  getAvailableSlotsStatus: AsyncRequestState;
+  listBookingStatus: AsyncRequestState;
+  createBookingStatus: AsyncRequestState;
+  bookingError: ErrorType;
+  bookings: Booking[],
+  bookingCancelStatus: AsyncRequestState;
 }
 
 export interface ActionLoding {
@@ -47,3 +49,15 @@ export interface BookingRow {
   time: string[];
 }
 
+export interface NewRoomBooking {
+  userId: number;
+  roomId: number;
+  slots: number[];
+}
+
+export type CompanyRooms = { [key: string]: Room[] }
+
+export interface ErrorType {
+  status: number;
+  error: string;
+}

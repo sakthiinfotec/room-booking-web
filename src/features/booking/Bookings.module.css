@@ -1,0 +1,47 @@
+.contentWrapper {
+  margin: 12px 15%;
+}
+
+.stepsContent {
+  min-height: 300px;
+  margin-top: 16px;
+  padding: 0px 24px 24px;
+  background-color: #fafafa;
+  border: 1px dashed #e9e9e9;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stepsAction {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.checkCircleIcon {
+  font-size: 32px;
+  color: var(--theme-color-success);
+}
+
+.warinngIcon {
+  font-size: 32px;
+  color: var(--theme-color-error);
+}
+
+.confirmMessage {
+  margin: 0px;
+  font-size: 24px;
+  color: rgb(75, 75, 75);
+}
+
+.bookingConfirmation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnPrevious {
+  margin: 0 16px;
+}

@@ -1,0 +1,11 @@
+.headerWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  color: var(--theme-color);
+  margin: 4px 0px 24px;
+}

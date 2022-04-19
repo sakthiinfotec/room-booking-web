@@ -1,27 +1,36 @@
 import { useCallback, useEffect, useState } from "react";
-import { Button, Table } from "antd";
+import { Button, Modal, Table } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import moment from "moment";
-
+import styles from "./Bookings.module.css";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import styles from "./BookingList.module.css";
-import { fetchBookingsAsync, selectBookings, selectBookingsLoading } from "./bookingSlice";
-import { Booking, BookingListProps, BookingRow, ActionLoding } from "../../app/types";
-import { columns } from "./TableHelper";
+import { Booking, BookingRow, Room, Slot } from "../../app/types";
+import { TitleSection } from "../../app/components";
+import {
+  cancelBookingAsync,
+  fetchBookingsAsync,
+  selectRooms,
+  selectSlots,
+  selectBookingCancelLoading,
+  selectBookings,
+  selectBookingsLoading,
+} from "./bookingSlice";
+import prepareColumns from "./TableHelper";
+import {
+  BTN_NO_CANCEL as BTN_NO,
+  BTN_REFRESH,
+  BTN_YES_CANCEL,
+  CANCEL_CONFIRM_MESSAGE,
+  CANCEL_CONFIRM_TITLE,
+} from "../../app/config";
 
-const TitleSection = ({ loading, onClick }: ActionLoding) => (
-  <div className={styles.headerWrapper}>
-    <h2 className={styles.header}>My Bookings</h2>
-    <div>
-      <Button type="primary" loading={loading} onClick={onClick}>
-        Refresh
-      </Button>
-    </div>
-  </div>
-);
-
-export function BookingList({ rooms = [], slots = [] }: BookingListProps) {
+export function BookingList() {
+  const rooms = useAppSelector<Room[]>(selectRooms);
+  const slots = useAppSelector<Slot[]>(selectSlots);
   const bookings = useAppSelector<Booking[]>(selectBookings);
   const bookingsLoading = useAppSelector(selectBookingsLoading);
+  const bookingCancelLoading = useAppSelector(selectBookingCancelLoading);
+  const [bookingCancelId, setBookingCancelId] = useState<number>(0);
   const dispatch = useAppDispatch();
 
   const transformBookingsToRowData = (bookings: Booking[]) => {
@@ -52,14 +61,35 @@ export function BookingList({ rooms = [], slots = [] }: BookingListProps) {
     fetchBookings();
   }, [fetchBookings]);
 
+  function confirmCancellation(bookingId: number) {
+    Modal.confirm({
+      icon: <ExclamationCircleOutlined />,
+      title: CANCEL_CONFIRM_TITLE,
+      content: CANCEL_CONFIRM_MESSAGE,
+      centered: true,
+      okText: BTN_YES_CANCEL,
+      cancelText: BTN_NO,
+      onOk: () => {
+        setBookingCancelId(bookingId);
+        dispatch(cancelBookingAsync(bookingId));
+      },
+    });
+  }
+
   return (
     <div className={styles.contentWrapper}>
-      <TitleSection loading={bookingsLoading} onClick={fetchBookings} />
+      <TitleSection title="My Bookings">
+        <div>
+          <Button type="primary" loading={bookingsLoading} onClick={fetchBookings}>
+            {BTN_REFRESH}
+          </Button>
+        </div>
+      </TitleSection>
       <Table
-        columns={columns}
+        columns={prepareColumns(confirmCancellation, bookingCancelLoading, bookingCancelId)}
         dataSource={data}
         pagination={{
-          pageSize: 10,
+          pageSize: 7,
         }}
       />
     </div>

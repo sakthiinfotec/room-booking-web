@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
+import { LINK_MY_BOOKINGS, LINK_NEW_BOOKING, MY_BOOKINGS_PAGE, NEW_BOOKING_PAGE } from "../../app/config";
 
 export function NavBar() {
   return (
     <nav className={styles.navbar}>
-      <h1 className={styles.logo}>reServe</h1>
-      <div className={styles.navLinksWrapper}>
+      <div className={styles.navbarWrapper}>
+        <h1 className={styles.logo}>reServe</h1>
         <ul className={styles.navLinks}>
-          <Link to="/my-bookings" className={styles.link}>
-            My Bookings
+          <Link to={MY_BOOKINGS_PAGE} className={styles.link}>
+            {LINK_MY_BOOKINGS}
           </Link>
-          <Link to="/book-new" className={`${styles.link} ${styles.linkButton}`}>
-            Book a Room
+          <Link to={`${MY_BOOKINGS_PAGE}/${NEW_BOOKING_PAGE}`} className={`${styles.link} ${styles.linkButton}`}>
+            {LINK_NEW_BOOKING}
           </Link>
         </ul>
       </div>
