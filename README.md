@@ -6,6 +6,7 @@ A room booking web app.
 
 - Node.js latest
 - PORT 3001
+- Dependency `room-booking-api`, need to start API first
 
 ### Running app
 
