@@ -69,3 +69,7 @@ export interface ErrorType {
   status: number;
   error: string;
 }
+
+export interface Location {
+  state: { from: { pathname: string } };
+}

@@ -3,10 +3,7 @@ import { Button } from "antd";
 import { FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "./auth";
-
-interface Location {
-  state: { from: { pathname: string } };
-}
+import { Location } from "../../app/types";
 
 function LoginPage() {
   const navigate = useNavigate();
