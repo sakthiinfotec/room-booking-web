@@ -218,13 +218,15 @@ const NewBooking = () => {
       <div className={styles.stepsAction}>
         {((current > 0 && current < steps.length - 1) ||
           (current === steps.length - 1 && bookingError && bookingError.error)) && (
-          <Button className={styles.btnPrevious} onClick={() => prev()}>
+          <Button className={styles.btnPrevious} size="large" onClick={() => prev()}>
             {BTN_PREVIOUS}
           </Button>
         )}
         {current < steps.length - 1 && (
           <Button
             type="primary"
+            size="large"
+            className={styles.btnNext}
             disabled={(current === 0 && selectedRoomId === 0) || (current === 1 && selectedTimeSlots.length === 0)}
             loading={newBookingLoading}
             onClick={steps[current].title === STEP2_TITLE ? handleBookRoom : next}
@@ -233,7 +235,7 @@ const NewBooking = () => {
           </Button>
         )}
         {current === steps.length - 1 && (
-          <Button type="primary" onClick={() => navigate(MY_BOOKINGS_PAGE)}>
+          <Button type="primary" size="large" className={styles.btnDone} onClick={() => navigate(MY_BOOKINGS_PAGE)}>
             {BTN_DONE}
           </Button>
         )}

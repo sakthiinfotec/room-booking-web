@@ -25,6 +25,7 @@ export const STEP2_TITLE = "Choose Time Slots and Book"
 export const STEP3_TITLE = "Comfirmation"
 
 export const LOADING_MESSAGE = "Loading..."
+export const INITIAL_DATA_LOADED_MESSAGE = "Initial data loaded..."
 export const BOOKING_SUCCESS_MESSAGE = "Your booking completed successfully!"
 export const CANCEL_CONFIRM_TITLE = "Confirm Cancel"
 export const CANCEL_CONFIRM_MESSAGE = "Are you sure you want to cancel this booking?"

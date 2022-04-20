@@ -44,4 +44,10 @@
 
 .btnPrevious {
   margin: 0 16px;
+  min-width: 120px;
+}
+
+.btnNext,
+.btnDone {
+  min-width: 120px;
 }

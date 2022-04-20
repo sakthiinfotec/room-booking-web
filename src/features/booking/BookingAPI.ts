@@ -1,4 +1,4 @@
-import { AUTH } from './../../app/config';
+import { AUTH, USERS } from './../../app/config';
 import { message } from "antd";
 import { BOOKINGS, BOOKING_SUCCESS_MESSAGE, ROOMS, SLOTS } from '../../app/config';
 import { Booking, NewRoomBooking, Room, Slot, ErrorType, User } from '../../app/types/index';
@@ -11,6 +11,25 @@ export async function fetchInitData(): Promise<any> {
   return Promise.all([
     fetch(ROOMS).then(resp => resp.json()),
     fetch(SLOTS).then(resp => resp.json())
+  ])
+}
+
+/**
+ * Setup initial data
+ * @returns Loaded result
+ */
+export async function setupInitData(users: User[], rooms: Room[], slots: Slot[]): Promise<any> {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  return Promise.all([
+    fetch(USERS, { ...options, body: JSON.stringify(users) }).then(resp => resp.json()),
+    fetch(ROOMS, { ...options, body: JSON.stringify(rooms) }).then(resp => resp.json()),
+    fetch(SLOTS, { ...options, body: JSON.stringify(slots) }).then(resp => resp.json()),
   ])
 }
 

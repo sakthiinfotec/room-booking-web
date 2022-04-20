@@ -8,16 +8,6 @@ export interface User {
   company: string;
 }
 
-export interface Booking {
-  id: number;
-  userId: number;
-  roomId: number;
-  slotId: number;
-  cancelled: boolean;
-  createdDate: Date;
-  updatedDate: Date;
-}
-
 export interface Room {
   id: number;
   name: string;
@@ -27,6 +17,16 @@ export interface Room {
 export interface Slot {
   id: number;
   name: string;
+}
+
+export interface Booking {
+  id: number;
+  userId: number;
+  roomId: number;
+  slotId: number;
+  cancelled: boolean;
+  createdDate: Date;
+  updatedDate: Date;
 }
 
 export interface BookingState {
