@@ -12,6 +12,8 @@ function LoginPage() {
   const navigate = useNavigate();
   const auth = useAuth();
   const location = useLocation() as Location;
+
+  // To redirect to actual referrer page
   const from = location.state?.from?.pathname || "/";
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
