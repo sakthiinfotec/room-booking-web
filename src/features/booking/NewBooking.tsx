@@ -5,7 +5,7 @@ import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { TitleSection } from "../../app/components";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { CompanyRooms, ErrorType, Room, Slot } from "../../app/types";
-import styles from "./Bookings.module.css";
+import styles from "./Booking.module.css";
 import {
   createBookingAsync,
   createBookingLoading,
@@ -32,11 +32,13 @@ import {
   STEP3_TITLE,
   TITLE_NEW_BOOKING,
 } from "../../app/config";
+import { useAuth } from "../auth/auth";
 
 const NewBooking = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const auth = useAuth();
   const rooms = useAppSelector<Room[]>(selectRooms);
   const slots = useAppSelector<Slot[]>(selectSlots);
   const availableRooms = useAppSelector<Room[]>(selectAvailableRooms);
@@ -93,7 +95,7 @@ const NewBooking = () => {
    */
   const handleBookRoom = async () => {
     const data = {
-      userId: 1,
+      userId: auth.user.id,
       roomId: selectedRoomId,
       slots: selectedTimeSlots,
     };
@@ -135,9 +137,9 @@ const NewBooking = () => {
 
   const RoomsByCompanyView = ({ companyRooms }: { companyRooms: CompanyRooms }) => (
     <Row gutter={[80, 20]}>
-      {Object.entries(companyRooms).map(([company, rooms], index) => {
-        const roomButtons = rooms.map((room) => <RoomButton room={room} />);
-        return <CompanyRooms company={company} roomButtons={roomButtons} />;
+      {Object.entries(companyRooms).map(([company, rooms]) => {
+        const roomButtons = rooms.map((room) => <RoomButton key={`${room.id}`} room={room} />);
+        return <CompanyRooms key={company} company={company} roomButtons={roomButtons} />;
       })}
     </Row>
   );

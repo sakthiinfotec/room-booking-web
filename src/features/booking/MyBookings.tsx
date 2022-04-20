@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Button, Modal, Table } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import moment from "moment";
-import styles from "./Bookings.module.css";
+import styles from "./Booking.module.css";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { Booking, BookingRow, Room, Slot } from "../../app/types";
 import { TitleSection } from "../../app/components";
@@ -25,7 +25,7 @@ import {
   TITLE_MY_BOOKINGS,
 } from "../../app/config";
 
-export function BookingList() {
+export function MyBookings() {
   const rooms = useAppSelector<Room[]>(selectRooms);
   const slots = useAppSelector<Slot[]>(selectSlots);
   const bookings = useAppSelector<Booking[]>(selectBookings);

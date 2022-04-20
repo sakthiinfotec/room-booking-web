@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import styles from "./Home.module.css";
-import { fetchInitDataAsync, selectInitDataLoading } from "../booking/bookingSlice";
 import { Spin } from "antd";
+import styles from "./Layout.module.css";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { fetchInitDataAsync, selectInitDataLoading } from "../booking/bookingSlice";
+import { NavBar } from "../navbar/NavBar";
 
-export function Home() {
+export function Layout() {
   const dispatch = useAppDispatch();
   const initDataLoading = useAppSelector(selectInitDataLoading);
 
@@ -21,5 +22,10 @@ export function Home() {
     );
   }
 
-  return <Outlet />;
+  return (
+    <>
+      <NavBar />
+      <Outlet />
+    </>
+  );
 }

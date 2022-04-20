@@ -1,16 +1,39 @@
+import { createContext, useContext } from "react";
+import { User } from './../../app/types/index';
+import { login } from "../booking/BookingAPI";
+import { message } from "antd";
+
+export interface AuthContextType {
+  user: User;
+  signin: (userId: string, callback: (user: User) => void) => void;
+  signout: (callback: VoidFunction) => void;
+}
+
+const AuthContext = createContext<AuthContextType>(null!);
+
+function useAuth() {
+  return useContext(AuthContext);
+}
+
 /**
- * This represents some generic auth provider API, like Firebase.
+ * An auth provider.
  */
-const fakeAuthProvider = {
+const authProvider = {
   isAuthenticated: false,
-  signin(callback: VoidFunction) {
-    fakeAuthProvider.isAuthenticated = true;
-    setTimeout(callback, 100); // fake async
+  async signin(userId: string, callback: (user: User) => void) {
+    await login({ userId: userId }).then(resp => {
+      if (resp.error) {
+        message.error(resp.error);
+      } else {
+        authProvider.isAuthenticated = true;
+        callback(resp);
+      }
+    })
   },
   signout(callback: VoidFunction) {
-    fakeAuthProvider.isAuthenticated = false;
+    authProvider.isAuthenticated = false;
     setTimeout(callback, 100);
   },
 };
 
-export { fakeAuthProvider };
+export { authProvider, useAuth, AuthContext };

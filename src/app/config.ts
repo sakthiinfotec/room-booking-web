@@ -1,10 +1,10 @@
 export const API_BASE_URL = 'http://127.0.0.1:3000';
+export const AUTH = `${API_BASE_URL}/auth`;
 export const USERS = `${API_BASE_URL}/users`;
 export const ROOMS = `${API_BASE_URL}/rooms`;
 export const SLOTS = `${API_BASE_URL}/slots`;
 export const BOOKINGS = `${API_BASE_URL}/bookings`;
 
-export const HOME_PAGE = "/"
 export const LOGIN_PAGE = "/login"
 export const MY_BOOKINGS_PAGE = "/bookings"
 export const NEW_BOOKING_PAGE = "new"
@@ -30,3 +30,4 @@ export const CANCEL_CONFIRM_TITLE = "Confirm Cancel"
 export const CANCEL_CONFIRM_MESSAGE = "Are you sure you want to cancel this booking?"
 export const BTN_YES_CANCEL = "Yes, Cancel"
 export const BTN_NO_CANCEL = "No"
+export const KEY_AUTH_DATA = "AUTH_DATA"

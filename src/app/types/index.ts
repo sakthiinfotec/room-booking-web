@@ -1,5 +1,13 @@
 export type AsyncRequestState = 'idle' | 'loading' | 'failed'
 
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  title: string;
+  company: string;
+}
+
 export interface Booking {
   id: number;
   userId: number;

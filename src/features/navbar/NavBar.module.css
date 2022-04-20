@@ -1,23 +1,22 @@
 .navbar {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   height: 100px;
   background: var(--theme-color);
-  color: #ffffff;
+  color: var(--theme-color-white);
 }
 
 .navbarWrapper {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  flex: 1;
+  justify-content: center;
   margin: 0px 15%;
 }
 
 .logo {
   margin: 0px;
-  color: #ffffff;
+  color: var(--theme-color-white);
   pointer-events: none;
   font-size: 36px;
   font-weight: bold;
@@ -26,19 +25,24 @@
 .navLinks {
   margin: 0px;
   display: flex;
-  justify-content: space-around;
+  flex: 1;
+  justify-content: flex-end;
   align-items: center;
   font-weight: bold;
 }
 
 .link {
-  margin: 0px 0px 0px 60px;
+  margin: 0px 24px;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--theme-color-white);
+}
+
+.link:nth-last-of-type(1) {
+  margin-right: 80px;
 }
 
 .link:hover {
-  color: #ffffff;
+  color: var(--theme-color-white);
 }
 
 .linkButton {
@@ -49,4 +53,13 @@
 
 .linkButton:hover {
   background: var(--theme-color-dark-hover-rgba);
+}
+
+.avatarIcon {
+  background-color: var(--theme-color-rgb);
+}
+
+.name,
+.name:hover {
+  color: var(--theme-color-white);
 }

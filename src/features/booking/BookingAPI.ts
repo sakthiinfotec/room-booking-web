@@ -1,6 +1,7 @@
+import { AUTH } from './../../app/config';
 import { message } from "antd";
 import { BOOKINGS, BOOKING_SUCCESS_MESSAGE, ROOMS, SLOTS } from '../../app/config';
-import { Booking, NewRoomBooking, Room, Slot, ErrorType } from './../../app/types/index';
+import { Booking, NewRoomBooking, Room, Slot, ErrorType, User } from '../../app/types/index';
 
 /**
  * Fetch initial data such as rooms and slots
@@ -18,14 +19,14 @@ export async function fetchInitData(): Promise<any> {
  * @returns bookings[]
  */
 export async function createBooking(data: NewRoomBooking): Promise<Booking[] | ErrorType> {
-  const requestOptions = {
+  const reqOptions = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data)
   };
-  return fetch(BOOKINGS, requestOptions)
+  return fetch(BOOKINGS, reqOptions)
     .then(async response => {
       const data = await response.json();
       if (!response.ok) {
@@ -79,4 +80,21 @@ export async function cancelBooking(bookingId: number): Promise<Booking> {
       return ({ id: bookingId, cancelled: true } as Booking)
     })
     .catch(() => ({ id: bookingId, cancelled: false } as Booking));
+}
+
+/**
+ * Create new room booking
+ * @returns bookings[]
+ */
+export async function login(data: { userId: string }): Promise<any> {
+  const reqOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data)
+  };
+  return fetch(AUTH, reqOptions)
+    .then(response => response.json())
+    .catch((err) => console.error(`[BookingAPI] Error while login`, err));
 }

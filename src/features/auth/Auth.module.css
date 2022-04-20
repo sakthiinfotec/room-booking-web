@@ -1,0 +1,29 @@
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  margin-top: 20vh;
+}
+
+.loginWrapper {
+  padding: 24px;
+  border: 1px solid darkgray;
+  border-radius: 8px;
+}
+
+.heading {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.username {
+  padding: 4px;
+  border: 2px solid darkgray;
+  border-radius: 4px;
+}
+
+.btnSubmit {
+  text-align: right;
+  margin-top: 24px;
+}

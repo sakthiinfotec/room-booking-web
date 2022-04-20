@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchInitData, fetchBookings, cancelBooking, createBooking, fetchAvailableRooms, fetchAvailableSlots } from './BookingListAPI';
+import { fetchInitData, fetchBookings, cancelBooking, createBooking, fetchAvailableRooms, fetchAvailableSlots } from './BookingAPI';
 import { RootState } from '../../app/store';
 import { ErrorType } from './../../app/types/index';
 import { BookingState } from '../../app/types';
